@@ -41,5 +41,5 @@ Feel free to check [issues page](https://github.com/AmauriOliveira/product-backe
 
 ## :books: License
 
-Copyright © 2020 Amauri Oliveira
+Copyright © 2024 Amauri Oliveira
 This project is [MIT](license) licensed.
