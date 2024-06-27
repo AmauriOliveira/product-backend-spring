@@ -32,20 +32,14 @@ public class ProductController {
 
   @GetMapping("products/{id}")
   public ResponseEntity<Product> getProduct(@PathVariable int id) {
-    Product result = null;
-    for (Product product: this.products) {
-
-      if (product.getId() == id) {
-        result = product;
-
-        break;
-      }
-    }
-    if (result == null) {
-      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "product not found.");
-    } else {
-      return ResponseEntity.ok(result);
-    }
+    return ResponseEntity.ok(
+      this.products.stream()
+      .filter(product -> product
+      .getId() == id).findFirst()
+      .orElseThrow(
+        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "product not found.")
+      )
+    );
   }
 
   @GetMapping("products")
