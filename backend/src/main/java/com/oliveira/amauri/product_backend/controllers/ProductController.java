@@ -3,33 +3,47 @@ package com.oliveira.amauri.product_backend.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.oliveira.amauri.product_backend.models.Product;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import jakarta.annotation.PostConstruct;
 
 @RestController
 public class ProductController {
 
-  @GetMapping("product")
-  public Product getProduct() {
-    return new Product(1, "Doce", 0.5);
-  }
+  private List<Product> products = new ArrayList<>();
 
-  @SuppressWarnings("unchecked")
-  @GetMapping("products")
-  public List<Product> getProducts() {
+  @PostConstruct // chama após a construção
+  public void init() {
     Product product1 = new Product(1, "Doce", 0.5);
     Product product2 = new Product(2, "Pipoca", 0.7);
     Product product3 = new Product(3, "Hot Dog", 6.5);
 
-    List productList = new ArrayList<Product>();
+    this.products.add(product1);
+    this.products.add(product2);
+    this.products.add(product3);
+  }
 
-    productList.add(product1);
-    productList.add(product2);
-    productList.add(product3);
+  @GetMapping("products/{id}")
+  public ResponseEntity<Product> getProduct(@PathVariable int id) {
+    return ResponseEntity.ok(
+      this.products.stream()
+      .filter(product -> product
+      .getId() == id).findFirst()
+      .orElseThrow(
+        () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "product not found.")
+      )
+    );
+  }
 
-    return productList;
+  @GetMapping("products")
+  public List<Product> getProducts() {
+    return this.products;
   }
 }
