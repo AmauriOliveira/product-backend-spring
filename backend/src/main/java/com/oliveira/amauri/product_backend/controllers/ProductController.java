@@ -16,9 +16,9 @@ import com.oliveira.amauri.product_backend.models.Product;
 public class ProductController {
 
   private List<Product> products = Arrays.asList(
-    new Product(1, "Doce", 0.5),
-    new Product(2, "Pipoca", 0.7),
-    new Product(3, "Hot Dog", 6.5)
+    new Product(1, "Doce de Batata Doce", "O doce mais doce", 3, true, false,0.5),
+    new Product(2, "Pipoca Doce", "Pipoca quente na manteiga e coberta de açúcar", 2, false, true, 0.7),
+    new Product(3, "Hot Dog", "Hot dog completo", 1, true, true, 6.5)
   );
 
   //@PostConstruct // chama após a construção, pode se decorar uma função
