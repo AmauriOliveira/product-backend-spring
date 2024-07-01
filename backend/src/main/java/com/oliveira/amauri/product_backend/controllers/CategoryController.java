@@ -19,9 +19,10 @@ import com.oliveira.amauri.product_backend.models.Category;
 public class CategoryController {
 
   private List<Category> categories = Arrays.asList(
-    new Category(1, "Produção Propria"),
+    new Category(1, "Produção Própria"),
     new Category(2, "Nacional"),
-    new Category(3, "Importado")
+    new Category(3, "Importado"),
+    new Category(5, "Premium")
   );
 
   @GetMapping("categories/{id}")
