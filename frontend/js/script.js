@@ -11,22 +11,25 @@ let categories = [];
 
 //OnLoad
 loadCategories();
+loadProducts();
 
 function loadCategories() {
-    $.getJSON('http://localhost:8080/categories', (categoriesResponse) => {
-        if (categoriesResponse?.length !== 0) {
-            for (category of categoriesResponse) {
-                const { id, name } = category
+    $.ajax({
+        url: 'http://localhost:8080/categories',
+        type: 'GET',
+        async: false,
+        success: (categoriesResponse) => {
+            categories = categoriesResponse;
 
-                categories.push({id, name})
+            for (const category of categories) {
+                const { id, name } = category;
+
+                document.getElementById('selectCategory').innerHTML += `<option value=${id}>${name}</option>`
             }
-
-            loadProducts();
-        }
+        },
     });
 }
 
-//Load all products
 function loadProducts() {
     $.getJSON('http://localhost:8080/products', (productsResponse) => {
         for (let product of productsResponse) {
