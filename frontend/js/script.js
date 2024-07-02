@@ -41,15 +41,27 @@ function loadProducts() {
 //save a product
 function save() {
 
-    var prod = {
-        id: products.length + 1,
+    const productObject = {
         name: document.getElementById("inputName").value,
         description: document.getElementById("inputDescription").value,
         price: convertToNumber(document.getElementById("inputPrice").value),
-        category: document.getElementById("selectCategory").value,
-        promotion: document.getElementById("checkBoxPromotion").checked,
-        new: document.getElementById("checkBoxNewProduct").checked
+        idCategory: document.getElementById("selectCategory").value,
+        onSale: document.getElementById("checkBoxPromotion").checked,
+        launching: document.getElementById("checkBoxNewProduct").checked
     };
+
+    $.ajax({
+        url: 'http://localhost:8080/products',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(productObject),
+        success: (product) => {
+            addNewRow(product);
+            products.push(product);
+
+            document.getElementById('formProduct').reset();
+        },
+    });
 
     addNewRow(prod);
     products.push(prod);
