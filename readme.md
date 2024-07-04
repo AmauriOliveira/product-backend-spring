@@ -20,6 +20,7 @@ Com o objetivo de aumentar minha stack e ajudar em projetos da minha equipe atua
 - typescript
 - html
 - css
+- jquery
 
 ## :star2: Contributing
 
