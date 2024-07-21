@@ -7,10 +7,5 @@ import { BookModel } from 'src/app/core/models';
   styleUrls: ['./book.component.scss'],
 })
 export class BookComponent {
-  book: BookModel = {
-    id: 1,
-    title: 'Angular for novice',
-    author: 'Unknown',
-    price: 120.5,
-  };
+  book: BookModel = {} as BookModel;
 }
