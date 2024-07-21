@@ -1,0 +1,29 @@
+<div class="container">
+  <h3>Livros</h3>
+
+  <table>
+    <thead>
+      <th>
+        #
+      </th>
+      <th>
+        Title
+      </th>
+      <th>
+        Author
+      </th>
+      <th>
+        Price
+      </th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books; let isFirst = first; let isLast= last">
+        <td>{{book.id}}</td>
+        <td>{{book.title}}</td>
+        <td>{{book.author}}</td>
+        <td>{{book.price}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
