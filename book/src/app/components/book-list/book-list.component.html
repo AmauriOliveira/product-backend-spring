@@ -1,20 +1,12 @@
 <div class="container">
   <h3>Livros</h3>
 
-  <table>
+  <table class="table">
     <thead>
-      <th>
-        #
-      </th>
-      <th>
-        Title
-      </th>
-      <th>
-        Author
-      </th>
-      <th>
-        Price
-      </th>
+      <th>#</th>
+      <th>Título</th>
+      <th>Autor</th>
+      <th>Preço</th>
     </thead>
     <tbody>
       <tr *ngFor="let book of books; let isFirst = first; let isLast= last">
